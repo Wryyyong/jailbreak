@@ -1,4 +1,4 @@
-> **Since the original creator - Kurt Stolle (check out his GitHub profile [here](https://github.com/kurt-stolle/)) - ins't involved in the GMod community anymore, he allowed me to fork this project.**
+> **Since the original creator - Kurt Stolle (check out his GitHub profile [here](https://github.com/kurt-stolle/)) - isn't involved in the GMod community anymore, he allowed me to fork this project.**
 
 # Jail Break 7
 
@@ -24,10 +24,38 @@ Convar                                     | Effect
 `jb_config_primaries_are_concealed 1/0`       | Conceal primaries - they won't draw on the player's back if this is set to 1.
 `jb_config_secondaries_are_concealed 1/0`     | Conceal secondaries - they won't draw on the player's thigh if this is set to 1.
 `jb_config_knives_are_concealed 1/0`           | Conceal knives - they won't draw on the player's thigh if this is set to 1.
-`jb_config_grenades_are_concealed 1/0"`       | Conceal grenades - they won't draw on the player's thigh if this is set to 1.
-`jb_config_falldamage_is_disabled 1/0"`   | Disables falldamage if this is set to 1.
+`jb_config_grenades_are_concealed 1/0`       | Conceal grenades - they won't draw on the player's thigh if this is set to 1.
+`jb_config_falldamage_is_disabled 1/0`   | Disables falldamage if this is set to 1.
 `jb_config_rounds_per_map 10`                 | Rounds until mapvote - ONLY SET THIS IF YOU HAVE A MAPVOTE SYSTEM ON YOUR SERVER/COMMUNITY
 `jb_config_notify_lastguard 1/0`           | Send the "last guard kills all" notification
+
+
+Further console commands:
+
+Command                                   | Effect
+------------------------------------------|--------------------------------------------------------------------
+`jb_dropweapon`                       | Drops the selected weapon.
+`jb_pickup`                            | Takes the weapon in the user's crosshair.
+`jb_team_select_guard`              | Switches to the guard team.
+`jb_team_select_prisoner`          | Switches to the prisoner team.
+`jb_team_select_spectator`         | Switches to spectator.
+`jb_admin_swap STEAMID`             | Switches the player with the specified STEAMID to the opposite team.
+`jb_admin_swap_specator STEAMID`  | Switches the player with the specified STEAMID to spectator.
+`jb_admin_revive STEAMID`           | Revives the player with the specified STEAMID.
+`jb_admin_configmode`                | Edit KOS-zones. Spawn two points with "R", move them and save by freezing both of them using right click. The corresponding file is located at \steamapps\common\GarrysMod\garrysmod\data\jailbreak\zones\.
+
+Chat commands (add "!" or "/" infront of the command; "/" hides it from other players):
+
+Command                                    | Effect
+-------------------------------------------|--------------------------------------------------------------------
+`drop`                                   | Drops the current weapon.
+`pickup `                                | Takes the weapon in the user's crosshair.
+`guard`                                  | Switches to the guard team.
+`prisoner`                              | Switches to the prisoner team.
+`spectator`                             | Switches to spectator.
+`teamswap`, `swap` or `swapteam`    | Switches to the opposite team.
+
+
 
 ## Developers
 
