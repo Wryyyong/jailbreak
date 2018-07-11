@@ -42,11 +42,11 @@ PLAYER.CrouchedWalkSpeed 	= 0.4
 PLAYER.DuckSpeed			= 0.3
 PLAYER.UnDuckSpeed			= 0.3
 PLAYER.JumpPower			= 200
-PLAYER.CanUseFlashlight     = false
+PLAYER.CanUseFlashlight     = true
 PLAYER.MaxHealth			= 100
 PLAYER.StartHealth			= 100
 PLAYER.StartArmor			= 50
-PLAYER.DropWeaponOnDie		= false
+PLAYER.DropWeaponOnDie		= true
 PLAYER.AvoidPlayers			= false
 
 function PLAYER:Spawn()
@@ -66,7 +66,7 @@ function PLAYER:Loadout()
 	self.Player:Give("weapon_jb_fists");
 
 	if math.random(1,JB.Config.prisonerSpecialChance) == 1 then
-		self.Player:Give(table.Random(randomSpecialWeapon)); -- give the player a rando waeapon from our table.
+		self.Player:Give(table.Random(randomSpecialWeapon)); -- give the player a random weapon from our table.
 	end
 end
 
@@ -77,69 +77,23 @@ function PLAYER:SetupDataTables()
 end
 
 local prisonerModels = {
-
--- Black models (we add these a few times, so it increases the chance of a player being black, which makes the atmosphere of the game more "criminal")
-	Model("models/player/Group01/female_03.mdl"),
-	Model("models/player/Group01/female_05.mdl"),
-	Model("models/player/Group01/male_01.mdl"),
-	Model("models/player/Group01/male_03.mdl"),
-	Model("models/player/Group01/female_03.mdl"),
-	Model("models/player/Group01/female_05.mdl"),
-	Model("models/player/Group01/male_01.mdl"),
-	Model("models/player/Group01/male_03.mdl"),
-	Model("models/player/Group01/female_03.mdl"),
-	Model("models/player/Group01/female_05.mdl"),
-	Model("models/player/Group01/male_01.mdl"),
-	Model("models/player/Group01/male_03.mdl"),
-	Model("models/player/Group01/female_03.mdl"),
-	Model("models/player/Group01/female_05.mdl"),
-	Model("models/player/Group01/male_01.mdl"),
-	Model("models/player/Group01/male_03.mdl"),
-	Model("models/player/Group01/female_03.mdl"),
-	Model("models/player/Group01/female_05.mdl"),
-	Model("models/player/Group01/male_01.mdl"),
-	Model("models/player/Group01/male_03.mdl"),
-	Model("models/player/Group01/female_03.mdl"),
-	Model("models/player/Group01/female_05.mdl"),
-	Model("models/player/Group01/male_01.mdl"),
-	Model("models/player/Group01/male_03.mdl"),
-	Model("models/player/Group01/female_03.mdl"),
-	Model("models/player/Group01/female_05.mdl"),
-	Model("models/player/Group01/male_01.mdl"),
-	Model("models/player/Group01/male_03.mdl"),
-	Model("models/player/Group01/female_03.mdl"),
-	Model("models/player/Group01/female_05.mdl"),
-	Model("models/player/Group01/male_01.mdl"),
-	Model("models/player/Group01/male_03.mdl"),
-	Model("models/player/Group01/female_03.mdl"),
-	Model("models/player/Group01/female_05.mdl"),
-	Model("models/player/Group01/male_01.mdl"),
-	Model("models/player/Group01/male_03.mdl"),
-	Model("models/player/Group01/female_03.mdl"),
-	Model("models/player/Group01/female_05.mdl"),
-	Model("models/player/Group01/male_01.mdl"),
-	Model("models/player/Group01/male_03.mdl"),
-	Model("models/player/Group01/female_03.mdl"),
-	Model("models/player/Group01/female_05.mdl"),
-	Model("models/player/Group01/male_01.mdl"),
-	Model("models/player/Group01/male_03.mdl"),
-	Model("models/player/Group01/female_03.mdl"),
-	Model("models/player/Group01/female_05.mdl"),
-	Model("models/player/Group01/male_01.mdl"),
-	Model("models/player/Group01/male_03.mdl"),
-
--- Normal 'white' models
-	Model("models/player/Group01/female_02.mdl"),
+	
 	Model("models/player/Group01/female_01.mdl"),
+	Model("models/player/Group01/female_02.mdl"),
+	Model("models/player/Group01/female_03.mdl"),
 	Model("models/player/Group01/female_04.mdl"),
+	Model("models/player/Group01/female_05.mdl"),
 	Model("models/player/Group01/female_06.mdl"),
+	Model("models/player/Group01/male_01.mdl"),
 	Model("models/player/Group01/male_02.mdl"),
+	Model("models/player/Group01/male_03.mdl"),
 	Model("models/player/Group01/male_04.mdl"),
 	Model("models/player/Group01/male_05.mdl"),
 	Model("models/player/Group01/male_06.mdl"),
 	Model("models/player/Group01/male_07.mdl"),
 	Model("models/player/Group01/male_08.mdl"),
 	Model("models/player/Group01/male_09.mdl"),
+	
 }
 function PLAYER:SetModel()
 	self.Player:SetModel( string.lower(table.Random(prisonerModels)) )
