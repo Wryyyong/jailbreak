@@ -64,7 +64,7 @@ hook.Add("PostPlayerDraw","JB.PostPlayerDraw.DrawWeapons",function(p)
 	for k, v in pairs(weps)do
 		local mdl = clientModels[v:GetClass()];
 		if IsValid(mdl) and p:GetActiveWeapon() and p:GetActiveWeapon():IsValid() and p:GetActiveWeapon():GetClass() ~= v:GetClass() then
-			if v:IsSecondary() then
+			if v:IsSecondary() and not tobool(JB.Config.secondariesAreConcealed) then
 				local boneindex = p:LookupBone("ValveBiped.Bip01_R_Thigh")
 				if boneindex then
 					local pos, ang = p:GetBonePosition(boneindex)
@@ -74,7 +74,7 @@ hook.Add("PostPlayerDraw","JB.PostPlayerDraw.DrawWeapons",function(p)
 					mdl:SetRenderAngles(ang);
 					mdl:DrawModel();
 				end
-			elseif v:IsPrimary() then
+			elseif v:IsPrimary() and not tobool(JB.Config.primariesAreConcealed) then
 				local boneindex = p:LookupBone("ValveBiped.Bip01_Spine2")
 				if boneindex then
 					local pos, ang = p:GetBonePosition(boneindex)
@@ -96,7 +96,7 @@ hook.Add("PostPlayerDraw","JB.PostPlayerDraw.DrawWeapons",function(p)
 					mdl:SetRenderAngles(ang);
 					mdl:DrawModel();
 				end
-			elseif string.Left(v:GetClass(),10) == "weapon_jb_grenade" then
+			elseif string.Left(v:GetClass(),10) == "weapon_jb_grenade" and not tobool (JB.Config.grenadesAreConcealed) then
 				local boneindex = p:LookupBone("ValveBiped.Bip01_L_Thigh")
 				if boneindex then
 					local pos, ang = p:GetBonePosition(boneindex)

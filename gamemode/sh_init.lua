@@ -53,7 +53,10 @@ config.guardPlaytime = makeConfig("jb_config_guards_playtime","120");
 config.prisonerNameChange = makeConfig("jb_config_prisoners_namechange","0");
 config.wardenControl = makeConfig("jb_config_warden_control_enabled","1");
 config.prisonerSpecialChance = makeConfig("jb_config_prisoner_special_chance","10");
+config.primariesAreConcealed = makeConfig("jb_config_primaries_are_concealed","1");
+config.secondariesAreConcealed = makeConfig("jb_config_secondaries_are_concealed","1");
 config.knivesAreConcealed = makeConfig("jb_config_knives_are_concealed","1");
+config.grenadesAreConcealed = makeConfig("jb_config_grenades_are_concealed","1");
 config.roundsPerMap = makeConfig("jb_config_rounds_per_map","9999");
 config.notifyLG = makeConfig("jb_config_notify_lastguard",1);
 
