@@ -186,11 +186,13 @@ function SWEP:Reload()
 	local dur;
 	if clip > 0 then
 		self.Rechamber = false;
+		amt = self.Owner:GetAmmoCount(self.Primary.Ammo)+self:Clip1();
 		self:SetClip1(1);
 
 		dur = self.Owner:GetViewModel():SequenceDuration();
 	else
 		self.Rechamber = true;
+		amt = self.Owner:GetAmmoCount(self.Primary.Ammo);
 
 		dur = self.ReloadSequenceTime or self.Owner:GetViewModel():SequenceDuration();
 	end
@@ -199,16 +201,21 @@ function SWEP:Reload()
 	timer.Create(self.Owner:SteamID().."ReloadTimer", dur,1,function()
 		if not self or not IsValid(self) or not self.Owner or not IsValid(self.Owner) then return end
 
-		amt = math.Clamp(self.Owner:GetAmmoCount(self.Primary.Ammo),0,self.Primary.ClipSize);
-		self.Owner:RemoveAmmo(amt,self.Primary.Ammo);
+		if amt >= self.Primary.ClipSize then
+			self.Owner:SetAmmo(amt-self.Primary.ClipSize,self.Primary.Ammo);
+			newmag = self.Primary.ClipSize;
+		else
+			self.Owner:SetAmmo(0, self.Primary.Ammo);
+			newmag = amt;
+		end
 
 		if not self.Rechamber then
 			if SERVER then
-				self:SetClip1(amt+1);
+				self:SetClip1(newmag);
 			end
 		else
 			if SERVER then
-				self:SetClip1(amt);
+				self:SetClip1(newmag);
 			end
 			self:SendWeaponAnim(ACT_VM_DRAW);
 			self:SetNextPrimaryFire(CurTime()+.2);
