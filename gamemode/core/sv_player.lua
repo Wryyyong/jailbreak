@@ -163,7 +163,7 @@ local fallsounds = {
    Sound("player/damage3.wav")
 };
 JB.Gamemode.OnPlayerHitGround = function(gm,ply, in_water, on_floater, speed)
-   if in_water or speed < 460 or not IsValid(ply) then return end
+   if in_water or speed < 460 or not IsValid(ply) or tobool (JB.Config.falldamageIsDisabled) then return end
 
    local damage = math.pow(0.05 * (speed - 420), 1.30)
 

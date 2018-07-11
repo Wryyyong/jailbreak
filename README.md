@@ -25,6 +25,7 @@ Convar                                     | Effect
 `jb_config_secondaries_are_concealed 1/0`     | Conceal secondaries - they won't draw on the player's thigh if this is set to 1.
 `jb_config_knives_are_concealed 1/0`           | Conceal knives - they won't draw on the player's thigh if this is set to 1.
 `jb_config_grenades_are_concealed 1/0"`       | Conceal grenades - they won't draw on the player's thigh if this is set to 1.
+`jb_config_falldamage_is_disabled 1/0"`   | Disables falldamage if this is set to 1.
 `jb_config_rounds_per_map 10`                 | Rounds until mapvote - ONLY SET THIS IF YOU HAVE A MAPVOTE SYSTEM ON YOUR SERVER/COMMUNITY
 `jb_config_notify_lastguard 1/0`           | Send the "last guard kills all" notification
 
