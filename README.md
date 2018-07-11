@@ -1,3 +1,5 @@
+> **Since the original creator - Kurt Stolle (check out his GitHub profile [here](https://github.com/kurt-stolle/)) - ins't involved in the GMod community anymore, he allowed me to fork this project.**
+
 # Jail Break 7
 
 ## Configuration
