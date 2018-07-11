@@ -7,5 +7,157 @@
 
 	"settings"
 	{
+		1
+		{
+			"name"				"jb_config_jointime"
+			"text"				"Join time (seconds)"
+			"help"				"Time (in seconds) that players have to join after a mapchange (min. 10)"
+			"type"				"Numeric"
+			"default"			"20"
+		}
+		
+		2
+		{
+			"name"				"jb_config_setuptime"
+			"text"				"Setup time (seconds)"
+			"help"				"Time (in seconds) that guards have to claim warden after a round start (min. 10)"
+			"type"				"Numeric"
+			"default"			"60"
+		}
+		
+		3
+		{
+			"name"				"jb_config_guards_allowed"
+			"text"				"Maximum guard percentage"
+			"help"				"Percentage of players allowed to be guard (min. 1)"
+			"type"				"Numeric"
+			"default"			"30"
+		}
+		
+		4
+		{
+			"name"				"jb_config_guards_playtime"
+			"text"				"Minimum playtime for guards (minutes)"
+			"help"				"Playtime (in minutes) required to be guard"
+			"type"				"Numeric"
+			"default"			"120"
+		}
+		
+		5
+		{
+			"name"				"jb_config_rebel_sensitivity"
+			"text"				"Prisoner rebel sensitivity (0-2)"
+			"help"				"2 = prisoner becomes rebel on killing a guard, 1 = prisoner becomes rebel on damaging a guard, 0 = prisoner never becomes rebel"
+			"type"				"Numeric"
+			"default"			"0"
+		}
+		
+		6
+		{
+			"name"				"jb_config_prisoner_special_chance"
+			"text"				"Prisoner random weapon chance (1 out of x)"
+			"help"				"Chance a prisoner will get a random weapon. Chance = random(1,var)==1"
+			"type"				"Numeric"
+			"default"			"8"
+		}
+		
+		7
+		{
+			"name"				"jb_config_max_warden_rounds"
+			"text"				"Maximum warden rounds"
+			"help"				"Maximum amount of rounds a player can be warden in a row"
+			"type"				"Numeric"
+			"default"			"3"
+		}
+		
+		8
+		{
+			"name"				"jb_config_max_warden_rounds"
+			"text"				"Maximum warden rounds"
+			"help"				"Maximum amount of rounds a player can be warden in a row"
+			"type"				"Numeric"
+			"default"			"3"
+		}
+		
+		9
+		{
+			"name"				"jb_config_rounds_per_map"
+			"text"				"Rounds until mapvote"
+			"help"				"Rounds until mapvote - ONLY SET THIS IF YOU HAVE A MAPVOTE SYSTEM ON YOUR SERVER/COMMUNITY"
+			"type"				"Numeric"
+			"default"			"9999"
+		}
+		
+		10
+		{
+			"name"				"jb_config_prisoners_namechange"
+			"text"				"Fake names for prisoners"
+			"help"				"1 = use fake names for prisoners (ex. Prisoner 192346), 0 = use normal nicknames for prisoners"
+			"type"				"CheckBox"
+			"default"			"0"
+		}
+		
+		11
+		{
+			"name"				"jb_config_warden_control_enabled"
+			"text"				"Warden control"
+			"help"				"Toggles whether warden control should be enabled or not"
+			"type"				"CheckBox"
+			"default"			"1"
+		}
+		
+		12
+		{
+			"name"				"jb_config_primaries_are_concealed"
+			"text"				"Hide holstered primaries"
+			"help"				"Toggles whether holstered primaries should be displayed or not"
+			"type"				"CheckBox"
+			"default"			"1"
+		}
+		
+		13
+		{
+			"name"				"jb_config_secondaries_are_concealed"
+			"text"				"Hide holstered secondaries"
+			"help"				"Toggles whether holstered secondaries should be displayed or not"
+			"type"				"CheckBox"
+			"default"			"1"
+		}
+		
+		14
+		{
+			"name"				"jb_config_knives_are_concealed"
+			"text"				"Hide holstered knives"
+			"help"				"Toggles whether holstered knives should be displayed or not"
+			"type"				"CheckBox"
+			"default"			"1"
+		}
+		
+		15
+		{
+			"name"				"jb_config_grenades_are_concealed"
+			"text"				"Hide holstered grenades"
+			"help"				"Toggles whether holstered grenades should be displayed or not"
+			"type"				"CheckBox"
+			"default"			"1"
+		}
+		
+		16
+		{
+			"name"				"jb_config_falldamage_is_disabled"
+			"text"				"Disable falldamage"
+			"help"				"Toggles whether falldamage should be disabled or not"
+			"type"				"CheckBox"
+			"default"			"1"
+		}
+		
+		17
+		{
+			"name"				"jb_config_notify_lastguard"
+			"text"				"'Last guard kills all' notification"
+			"help"				"Send the 'last guard kills all' notification"
+			"type"				"CheckBox"
+			"default"			"0"
+		}
 	}
 }
