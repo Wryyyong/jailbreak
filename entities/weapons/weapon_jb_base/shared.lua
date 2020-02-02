@@ -31,42 +31,42 @@
 -- ####################################################################################
 
 
-/*
+--[[
 
 	These are the variables you may edit to add new guns:
 
-*/
-SWEP.Primary.NumShots		= 1;												// Number of bullets per shot fired, could be used to make a shotgun pellet effect.
-SWEP.Primary.Automatic		= true												// Automatic firing mode
-SWEP.Primary.Sound			= Sound( "Weapon_AK47.Single" );					// Weapon sound. Always precache this using the Sound function!
-SWEP.Primary.Ammo			= "SMG1";											// ammo type, SMG1 for all primary weapons, pistol for secondary; we don't want complicated ammo systems in this gamemode!
-SWEP.Primary.Recoil			= 1.2;												// recoil
-SWEP.Primary.Damage			= 40;												// damage taken when a bullet is fired into a player's chest area (hitting head makes for more damage, limbs makes for less)
-SWEP.Primary.Cone			= 0.05;												// spread
-SWEP.Primary.MaxCone		= 0.06; 											// maximum spread
-SWEP.Primary.ShootConeAdd	= 0.005;											// how much should be added to the spread for every shot fired
-SWEP.Primary.IronConeMul 	= 0.25;												// accuracy multiplier when aiming down sights or zoomed
-SWEP.Primary.CrouchConeMul 	= 0.8;												// accuracy multiplier when crouched
-SWEP.Primary.ClipSize		= 27;												// weapon clip size
-SWEP.Primary.Delay			= 0.13;												// weapon delay
-SWEP.Primary.IronShootForce = 2;												// added force when aiming down the sights - for dramatic effect
-SWEP.Primary.Burst 			= -1;												// number of bursts, should be -1 if the weapon isn't a burst-fire weapon
-SWEP.HoldType 				= "melee2"											// should be smg1, ar2 or revolver
---SWEP.ReloadSequenceTime 	= 1.85; 											// for rechamber -  Don't set this if you don't know it. Use the ModelViewer in SourceSDK to find out what the right time is.
-SWEP.Primary.Range 			= WEAPON_SNIPER										// sniper, smg, rifle or pistol effective range
-SWEP.FakeIronSights			= false												// for weapons without proper ironsights, such as the M4A1
+]]
+SWEP.Primary.NumShots		= 1;												-- Number of bullets per shot fired, could be used to make a shotgun pellet effect.
+SWEP.Primary.Automatic		= true												-- Automatic firing mode
+SWEP.Primary.Sound			= Sound( "Weapon_AK47.Single" );					-- Weapon sound. Always precache this using the Sound function!
+SWEP.Primary.Ammo			= "SMG1";											-- ammo type, SMG1 for all primary weapons, pistol for secondary; we don't want complicated ammo systems in this gamemode!
+SWEP.Primary.Recoil			= 1.2;												-- recoil
+SWEP.Primary.Damage			= 40;												-- damage taken when a bullet is fired into a player's chest area (hitting head makes for more damage, limbs makes for less)
+SWEP.Primary.Cone			= 0.05;												-- spread
+SWEP.Primary.MaxCone		= 0.06; 											-- maximum spread
+SWEP.Primary.ShootConeAdd	= 0.005;											-- how much should be added to the spread for every shot fired
+SWEP.Primary.IronConeMul 	= 0.25;												-- accuracy multiplier when aiming down sights or zoomed
+SWEP.Primary.CrouchConeMul 	= 0.8;												-- accuracy multiplier when crouched
+SWEP.Primary.ClipSize		= 27;												-- weapon clip size
+SWEP.Primary.Delay			= 0.13;												-- weapon delay
+SWEP.Primary.IronShootForce = 2;												-- added force when aiming down the sights - for dramatic effect
+SWEP.Primary.Burst 			= -1;												-- number of bursts, should be -1 if the weapon isn't a burst-fire weapon
+SWEP.HoldType 				= "melee2"											-- should be smg1, ar2 or revolver
+--SWEP.ReloadSequenceTime 	= 1.85; 											-- for rechamber -  Don't set this if you don't know it. Use the ModelViewer in SourceSDK to find out what the right time is.
+SWEP.Primary.Range 			= WEAPON_SNIPER										-- sniper, smg, rifle or pistol effective range
+SWEP.FakeIronSights			= false												-- for weapons without proper ironsights, such as the M4A1
 
 SWEP.Positions 				= {
-	 								{pos = Vector(0,0,0), ang = Vector(0,0,0)}, // Viewmodel positions in IDLE mode
-	 								{pos = Vector(0,0,0), ang = Vector(0,0,0)}, // Viewmodel positions in AIM mode
-	 								{pos = Vector(0,0,0), ang = Vector(0,0,0)}  // Viewmodel positions in SPRINT mode
+	 								{pos = Vector(0,0,0), ang = Vector(0,0,0)}, -- Viewmodel positions in IDLE mode
+	 								{pos = Vector(0,0,0), ang = Vector(0,0,0)}, -- Viewmodel positions in AIM mode
+	 								{pos = Vector(0,0,0), ang = Vector(0,0,0)}  -- Viewmodel positions in SPRINT mode
 							};
 
-/*
+--[[
 
 	Anything below this line you shouldn't have to read or touch!
 
-*/
+]]
 
 AddCSLuaFile()
 AddCSLuaFile("client.lua");
@@ -153,8 +153,8 @@ function SWEP:Deploy()
 end
 
 function SWEP:Holster()
-	//self.OldAmmo = self:Clip1();
-	//self:SetClip1(1);
+	--self.OldAmmo = self:Clip1();
+	--self:SetClip1(1);
 
 	self:SetNWLastShoot(0);
 

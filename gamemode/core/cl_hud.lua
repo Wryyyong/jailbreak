@@ -32,7 +32,7 @@
 
 
 
-/* HINTS FOR THE SPECTATOR HUD (up here for easy access) */
+--[[ HINTS FOR THE SPECTATOR HUD (up here for easy access) ]]
 local Hints = {
 	"To initiate a last request, the last remaining prisoner can press F4 and choose from a number of different requests.",
 	"The last guard alive may kill all prisoners, unless at the point he becomes last guard there are under three prisoners alive.",
@@ -47,7 +47,7 @@ local Hints = {
 	"Guards can run a little bit faster than prisoners. Make sure you only make your escape when nobody is looking!",
 };
 
-/* LIBRARIES */
+--[[ LIBRARIES ]]
 local allPlayers=player.GetAll
 
 local rad=math.rad;
@@ -79,7 +79,7 @@ local drawRect = surface.DrawRect;
 local drawSimpleShadowText = JB.Util.drawSimpleShadowText;
 
 
-/* VARIABLES */
+--[[ VARIABLES ]]
 local wardenMarkers = {}
 wardenMarkers["generic"] = {text="Move",icon=Material("jailbreak_excl/pointers/generic.png")}
 wardenMarkers["exclamation"] = {text="Attack",icon=Material("jailbreak_excl/pointers/exclamation.png")}
@@ -92,7 +92,7 @@ local ply,dt,state,scrW,scrH; --predefined variables for every HUD loop
 
 local yRestricted=-64;
 
-// MATERIALS
+-- MATERIALS
 local matHealth = Material("materials/jailbreak_excl/hud_health.png");
 local matHealthBottom = Material("materials/jailbreak_excl/hud_health_bottom.png");
 local matWarden = Material("materials/jailbreak_excl/hud_warden_bar.png");
@@ -102,11 +102,11 @@ local matHint = Material("materials/jailbreak_excl/pointers/pointer_background.p
 local matQuestion = Material("materials/jailbreak_excl/pointers/question.png");
 local matRestricted = Material("materials/jailbreak_excl/hud_restricted.png")
 
-// COLORS
+-- COLORS
 local color_marker = Color(255,255,255,0);
 local color_marker_dark = Color(0,0,0,0);
 
-// WARDEN PANEL
+-- WARDEN PANEL
 local warden;
 vgui.Register("JBHUDWardenFrame",{
 	Init = function(self)
@@ -131,7 +131,7 @@ vgui.Register("JBHUDWardenFrame",{
 		drawTexturedRect(0,0,256,64);
 
 		if IsValid(self.Player) then
-			//draw.SimpleText(self.Player:Nick(),"JBNormalShadow",62,h/2,JB.Color.black,0,1);
+			--draw.SimpleText(self.Player:Nick(),"JBNormalShadow",62,h/2,JB.Color.black,0,1);
 			drawSimpleShadowText(self.Player:Nick(),"JBNormal",62,h/2,JB.Color.white,0,1);
 		end
 	end,
@@ -150,7 +150,7 @@ hook.Add("Think","JB.Think.PredictWardenFrame",function()
 	end
 end);
 
-// UTILITY FUNCTIONS
+-- UTILITY FUNCTIONS
 local r;
 local function drawHealth(x,y,w,radius,amt)
 	for a = amt, amt + 180 * amt / 100 do
@@ -170,7 +170,7 @@ local function convertTime(t)
 	return (tostring( floor(t/60) ).." : "..sec )
 end
 
-// Health and ammo
+-- Health and ammo
 local healthMemory = 0;
 local health = 0;
 local wide_hp_1,wide_hp_2,height_hp;
@@ -223,7 +223,7 @@ local drawAmmoHealth = function()
 	drawTexturedRect(0,0,256,256);
 end
 
-// Spectator
+-- Spectator
 local specPosScreen,plySpec,players;
 local hint;
 local color_hint_questionmark = Color(255,255,255,0);
@@ -260,7 +260,7 @@ local drawSpectatorHUD = function()
 		end
 	end
 
-	//hint
+	--hint
 	x,y=scrW/2 - 256,scrH-128;
 
 	setDrawColor(JB.Color.white);
@@ -286,7 +286,7 @@ local drawSpectatorHUD = function()
 end
 timer.Create("JB.HUD.NewHint",8,0,newHint);
 
-// TIMER
+-- TIMER
 local drawTimer = function()
 	y = 32;
 	if IsValid(warden) then
@@ -303,7 +303,7 @@ local drawTimer = function()
 	drawSimpleShadowText(timerText,"JBNormal",scrW-16-64,y+32,JB.Color.white,1,1);
 end
 
-// LAST REQUEST
+-- LAST REQUEST
 local lrGuard,lrPrisoner;
 local drawLastRequest = function()
 	setMaterial(matLR)
@@ -322,7 +322,7 @@ local drawLastRequest = function()
 	drawSimpleShadowText(lrGuard,"JBNormal",scrW/2 - 28, 4 + 64,JB.Color.white,2,1);
 end
 
-// POINTER
+-- POINTER
 local posMarkerScreen,marker;
 local drawWardenPointer = function()
 	posMarkerScreen = (JB.TRANSMITTER:GetJBWarden_PointerPos()):ToScreen();
@@ -341,11 +341,11 @@ local drawWardenPointer = function()
 
 	drawSimpleShadowText(marker.text,"JBNormal",x,y+16,color_marker,1,0);
 
-	// note: 64unit = 1.22meters
+	-- note: 64unit = 1.22meters
 	drawSimpleShadowText(tostring(math.floor(LocalPlayer():EyePos():Distance(JB.TRANSMITTER:GetJBWarden_PointerPos()) * 1.22/64)).."m","JBSmall",x,y+34,color_marker,1,0);
 end
 
-// GM HOOK
+-- GM HOOK
 local hookCall = hook.Call;
 JB.Gamemode.HUDPaint = function(gm)
 	ply = LocalPlayer();
@@ -357,7 +357,7 @@ JB.Gamemode.HUDPaint = function(gm)
 	state = JB.State;
 
 	if ply:Alive() then
-		drawAmmoHealth(); // alive and well
+		drawAmmoHealth(); -- alive and well
 
 		-- ES support
 		if ES and ES.NotificationOffset then
@@ -366,7 +366,7 @@ JB.Gamemode.HUDPaint = function(gm)
 		end
 
 	else
-		drawSpectatorHUD(); // Spectator or dead.
+		drawSpectatorHUD(); -- Spectator or dead.
 
 		-- ES support
 		if ES and ES.NotificationOffset then
@@ -394,7 +394,7 @@ JB.Gamemode.HUDPaint = function(gm)
 	hookCall("HUDPaintOver",JB.Gamemode)
 end;
 
-// TARGET ID
+-- TARGET ID
 local uniqueid,ent,text_x,text_y,text,text_sub,text_wide,text_tall,text_color;
 JB.Gamemode.HUDDrawTargetID = function()
 	if LocalPlayer():GetObserverMode() ~= OBS_MODE_NONE then return end

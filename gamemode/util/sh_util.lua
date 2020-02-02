@@ -62,7 +62,7 @@ function JB.Util.isValid(...)
 end
 
 function JB.Util.formatLine(str,size)
-	//surface.SetFont( font );
+	--surface.SetFont( font );
 	
 	local start = 1;
 	local c = 1;	

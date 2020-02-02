@@ -57,21 +57,21 @@
 --------------------------------------------------------------------------------------
 
 
-/*
+--[[
 
 Compatability hooks - implement these in your admin mods
 
-*/
+]]
 
-function JB.Gamemode.JailBreakStartMapvote(rounds_passed,extentions_passed) // hook.Add("JailBreakStartMapvote",...) to implement your own mapvote. NOTE: Remember to return true!
-	return false // return true in your own mapvote function, else there won't be a pause between rounds!
+function JB.Gamemode.JailBreakStartMapvote(rounds_passed,extentions_passed) -- hook.Add("JailBreakStartMapvote",...) to implement your own mapvote. NOTE: Remember to return true!
+	return false -- return true in your own mapvote function, else there won't be a pause between rounds!
 end
 
-/*
+--[[
 
 State chaining
 
-*/
+]]
 local chainState;
 if SERVER then
 	local stateTime = 0;
@@ -98,20 +98,20 @@ if SERVER then
 	end)
 end
 
-/*
+--[[
 
 Utility functions
 
-*/
+]]
 local ententionsDone = 0;
-function JB:Mapvote_ExtendCurrentMap() 		// You can call this from your own admin mod/mapvote if you want to extend the current map.
+function JB:Mapvote_ExtendCurrentMap() 		-- You can call this from your own admin mod/mapvote if you want to extend the current map.
 	JB.RoundsPassed = 0;
 	ententionsDone = ententionsDone+1;
 	chainState(STATE_ENDED,5,function()
 		JB:NewRound();
 	end);
 end
-function JB:Mapvote_StartMapVote()			// You can call this from your admin mod/mapvote to initiate a mapvote.
+function JB:Mapvote_StartMapVote()			-- You can call this from your admin mod/mapvote to initiate a mapvote.
 	if hook.Call("JailBreakStartMapvote",JB.Gamemode,JB.RoundsPassed,ententionsDone) then
 		JB.State = STATE_MAPVOTE;
 		return true;
@@ -119,11 +119,11 @@ function JB:Mapvote_StartMapVote()			// You can call this from your admin mod/ma
 	return false;
 end
 
-/*
+--[[
 
 Enums
 
-*/
+]]
 STATE_IDLE = 1; -- when the map loads, we wait for everyone to join
 STATE_SETUP = 2; -- first few seconds of the round, when everyone can still spawn and damage is disabled
 STATE_PLAYING = 3; -- normal playing
@@ -131,21 +131,21 @@ STATE_LASTREQUEST = 4; -- last request taking place, special rules apply
 STATE_ENDED = 5; -- round ended, waiting for next round to start
 STATE_MAPVOTE = 6; -- voting for a map, will result in either a new map loading or restarting the current without reloading
 
-/*
+--[[
 
 Network strings
 
-*/
+]]
 if SERVER then
 	util.AddNetworkString("JB.LR.GetReady");
 	util.AddNetworkString("JB.SendRoundUpdate");
 end
 
-/*
+--[[
 
 Special days
 
-*/
+]]
 local function resetSpecial()
 	if SERVER then
 		game.ConsoleCommand("sv_gravity 600;\n")
@@ -241,11 +241,11 @@ if SERVER then
 	}
 end
 
-/*
+--[[
 
 Round System
 
-*/
+]]
 JB.ThisRound = {};
 local wantStartup = false;
 function JB:NewRound(rounds_passed)
@@ -322,7 +322,7 @@ function JB:EndRound(winner)
 
 	if SERVER then
 		if JB.RoundsPassed >= tonumber(JB.Config.roundsPerMap) and JB:Mapvote_StartMapVote() then
-			return; // Halt the round system; we're running a custom mapvote!
+			return; -- Halt the round system; we're running a custom mapvote!
 		end
 
 		chainState(STATE_ENDED,5,function()
@@ -376,11 +376,11 @@ elseif SERVER then
 	end);
 end
 
-/*
+--[[
 
 Transmission Entity
 
-*/
+]]
 JB.TRANSMITTER = JB.TRANSMITTER or NULL;
 hook.Add("InitPostEntity","JB.InitPostEntity.SpawnStateTransmit",function()
 	if SERVER and not IsValid(JB.TRANSMITTER) then
@@ -428,14 +428,14 @@ if CLIENT then
 	end);
 end
 
-/*
+--[[
 
 Index Callback methods
 
-*/
+]]
 
 
-// State
+-- State
 JB._IndexCallback.State = {
 	get = function()
 		return IsValid(JB.TRANSMITTER) and JB.TRANSMITTER.GetJBState and JB.TRANSMITTER:GetJBState() or STATE_IDLE;
@@ -450,7 +450,7 @@ JB._IndexCallback.State = {
 	end
 }
 
-// Round-related methods.
+-- Round-related methods.
 JB._IndexCallback.RoundsPassed = {
 	get = function()
 		return IsValid(JB.TRANSMITTER) and JB.TRANSMITTER.GetJBRoundsPassed and JB.TRANSMITTER:GetJBRoundsPassed() or 0;
@@ -476,7 +476,7 @@ JB._IndexCallback.RoundStartTime = {
 	end
 }
 
-// Last Request-related methods.
+-- Last Request-related methods.
 JB._IndexCallback.LastRequest = {
 	get = function()
 		return (JB.State == STATE_LASTREQUEST) and JB.TRANSMITTER:GetJBLastRequestPicked() or "0";
@@ -530,11 +530,11 @@ JB._IndexCallback.LastRequestPlayers = {
 	end
 }
 
-/*
+--[[
 
 Prevent Cleanup
 
-*/
+]]
 local old_cleanup = game.CleanUpMap;
 function game.CleanUpMap(send,tab)
 	if not tab then tab = {} end

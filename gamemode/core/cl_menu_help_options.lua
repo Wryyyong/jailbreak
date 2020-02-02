@@ -240,7 +240,7 @@ function JB.MENU_HELP_OPTIONS()
 			lbl:SetColor(color_text);
 
 			local DermaCheckbox = vgui.Create( "DCheckBox",fragment )
-			DermaCheckbox:SetPos( fragment:GetTall()/2 - DermaCheckbox:GetWide()/2,   fragment:GetTall()/2 - DermaCheckbox:GetTall()/2)// Set the position
+			DermaCheckbox:SetPos( fragment:GetTall()/2 - DermaCheckbox:GetWide()/2,   fragment:GetTall()/2 - DermaCheckbox:GetTall()/2)-- Set the position
 			DermaCheckbox:SetConVar( v[1] )
 		end
 	end
@@ -267,11 +267,11 @@ Copyright © Casual Bananas 2014 ]];
 		JB.Util.iterate{Label(text,right)}:SetPos(20,60):SetColor(color_text):SetFont("JBSmall"):SetSize(right:GetWide() - 40,280):SetWrap(true);
 	end
 
-	/* create the menu */
+	--[[ create the menu ]]
 	frame:Center();
 	frame:MakePopup();
 
-	/* open a tab */
+	--[[ open a tab ]]
 
 	btn_guide.OnMouseReleased();
 end

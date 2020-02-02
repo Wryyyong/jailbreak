@@ -32,12 +32,12 @@
 
 
 local randomQuestions = {
-	{ // Questions about the Jail Break gamemode
+	{ -- Questions about the Jail Break gamemode
 		{question="Who created the first version of Jail Break for Garry's Mod?",answer="excl"},
 		{question="What does LR stand for?",answer="last request"},
 		{question="Who is the person in charge of the prison?",answer="warden"},
 	},
-	{ // Questions about internet culture, games, etc...
+	{ -- Questions about internet culture, games, etc...
 		{question="In the game ‘Metal Gear Solid’,who is the twin brother of Solid Snake?",answer="Liquid Snake"},
 		{question="In video gaming, what is the name of the princess whom Mario repeatedly stops Bowser from kidnapping?",answer="Princess Peach"},
 		{question="In the game ‘Mortal Kombat’, what phrase is heard when Scorpion uses his spear?",answer="Get over here"},
@@ -56,7 +56,7 @@ local randomQuestions = {
 		{question="The Covenant are fictional military alien races in which game series?",answer="Halo"},
 		{question="What color is the most autistic video game hedgehog?",answer="blue"},
 	},
-	{ // Questions about human subjects, such as history and geography 
+	{ -- Questions about human subjects, such as history and geography 
 		{question="Name a game in which two teams kick a ball around.",answer="football"},
 		{question="Who wrote Julius Caesar, Macbeth and Hamlet?",answer="Shakespeare"},
 		{question="When was Elvis' first ever concert?",answer="1954"},
@@ -114,7 +114,7 @@ LR:SetStartCallback(function(prisoner,guard)
 		
 	elseif type(subject) == "table" then
 		local rnd = table.Random(subject);
-		question = rnd.question; // TODO: add more questions
+		question = rnd.question; -- TODO: add more questions
 		answer = rnd.answer;
 	end
 
@@ -131,7 +131,7 @@ LR:SetSetupCallback(function(prisoner,guard)
 	net.WriteEntity(guard);
 	net.Broadcast();
 
-	return false; // don't halt setup
+	return false; -- don't halt setup
 end)
 
 LR:SetIcon(Material("icon16/rosette.png"))
@@ -160,7 +160,7 @@ if SERVER then
 		end
 	end )
 elseif CLIENT then
-	hook.Add("PlayerBindPress", "JB.PlayerBindPress.LR.TriviaNoSayBindsFuckYou", function(pl, bind, pressed) // Not the safest way, but it requires the least amount of touching code outside of this file (without using nasty hacky methods)
+	hook.Add("PlayerBindPress", "JB.PlayerBindPress.LR.TriviaNoSayBindsFuckYou", function(pl, bind, pressed) -- Not the safest way, but it requires the least amount of touching code outside of this file (without using nasty hacky methods)
 		if JB.LastRequest == id and table.HasValue(JB.LastRequestPlayers,pl) and string.find( bind,"say" ) then
 			return true;
 		end

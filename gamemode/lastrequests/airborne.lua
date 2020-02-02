@@ -47,7 +47,7 @@ end)
 LR:SetIcon(Material("icon16/flag_green.png"))
 local this = LR();
 
-hook.Add("PlayerBindPress", "JB.PlayerBindPress.LR.Airborne", function(pl, bind, pressed) // Not the safest way, but it requires the least amount of touching code outside of this file (without using nasty hacky methods)
+hook.Add("PlayerBindPress", "JB.PlayerBindPress.LR.Airborne", function(pl, bind, pressed) -- Not the safest way, but it requires the least amount of touching code outside of this file (without using nasty hacky methods)
 	if JB.LastRequest == this and table.HasValue(JB.LastRequestPlayers,pl) and pl:IsOnGround() and string.find( bind,"+attack" ) then
 		return true;
 	end

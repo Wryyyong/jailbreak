@@ -30,14 +30,14 @@
 -- ##                                                                                ##
 -- ####################################################################################
 
-/* 
+--[[ 
 
 	drawSimpleShadowText
 	draws a text with a shadow font under it.
 
-*/
+]]
 
-// we will probably call this many times each frame, so let's localize a bit
+-- we will probably call this many times each frame, so let's localize a bit
 local getTextSize = surface.GetTextSize;
 local setTextPos = surface.SetTextPos;
 local setTextColor = surface.SetTextColor;
@@ -46,7 +46,7 @@ local drawText = surface.DrawText;
 local ceil = math.ceil;
 local w,h;
 
-// actual function
+-- actual function
 function JB.Util.drawSimpleShadowText(text,font,x,y,color,xalign,yalign,passes)
 	if not font or not x or not y or not color or not xalign or not yalign then return end
 

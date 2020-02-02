@@ -31,7 +31,7 @@
 -- ####################################################################################
 
 
-/* backup of old vgui
+--[[ backup of old vgui
 local matGradient = Material("materials/jailbreak_excl/gradient.png");
 local matClose = Material("materials/jailbreak_excl/vgui_close.png");
 local matCloseHover = Material("materials/jailbreak_excl/vgui_close_hover.png");
@@ -89,7 +89,7 @@ function PNL:Paint(w,h)
 	surface.DrawTexturedRectRotated(w/2,30 + 3 + (h_grad)/2,w-6,h_grad,0);
 end
 vgui.Register("JB.Frame",PNL,"EditablePanel");
-*/
+]]
 surface.CreateFont("JBWindowTitle",{
 	font = "Arial",
 	size = 18,
@@ -121,9 +121,9 @@ OnCursorExited = function(self)
 	self.Hover = false;
 end,
 Paint = function(self,w,h)
-	//surface.SetMaterial(self.Hover and matCloseHover or matClose)
-	//surface.SetDrawColor(JB.Color.white);
-	//surface.DrawTexturedRectRotated(w/2,h/2,32,32,0);
+	--surface.SetMaterial(self.Hover and matCloseHover or matClose)
+	--surface.SetDrawColor(JB.Color.white);
+	--surface.DrawTexturedRectRotated(w/2,h/2,32,32,0);
 
 	if self.Hover then
 		self.clr.a = Lerp(FrameTime()*6,self.clr.a,255);

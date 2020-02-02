@@ -39,10 +39,10 @@ ENT.PrintName 			="JB State Transmitter"
 function ENT:Initialize()
 	JB.TRANSMITTER = self;
 	JB:DebugPrint("Setup State Transmitter!");
-	//self:SetPredictable(true);
+	--self:SetPredictable(true);
 end
 function ENT:Think()
-	if not IsValid(JB.TRANSMITTER) and IsValid(self) then // there is no registered transmitter and yet we're here. What's going on? Let's assume that we are the transmitter that is being looked for.
+	if not IsValid(JB.TRANSMITTER) and IsValid(self) then -- there is no registered transmitter and yet we're here. What's going on? Let's assume that we are the transmitter that is being looked for.
 		JB.TRANSMITTER = self;
 	end
 end

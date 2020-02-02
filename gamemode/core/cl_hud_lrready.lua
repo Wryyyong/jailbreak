@@ -42,7 +42,7 @@ end);
 local _Material = Material( "pp/toytown-top" )
 _Material:SetTexture( "$fbtexture", render.GetScreenEffectTexture() )
 
-/* HUD elements */
+--[[ HUD elements ]]
 local drawText = draw.DrawText
 local setColor = surface.SetTextColor
 local setTextPos = surface.SetTextPos

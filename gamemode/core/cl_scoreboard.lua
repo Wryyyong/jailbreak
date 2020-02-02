@@ -401,7 +401,7 @@ vgui.Register("JBScoreboard",{
 	end,
 
 	Paint = function( self, w, h )
-		//DrawToyTown(2,ScrH());
+		--DrawToyTown(2,ScrH());
 	end,
 
 	Think = function( self  )
@@ -514,7 +514,7 @@ JB.Gamemode.ScoreboardShow = function()
 	if ( IsValid( scoreboard ) ) then
 		scoreboard.Expand = true;
 		scoreboard:Show()
-		//scoreboard:MakePopup()
+		--scoreboard:MakePopup()
 		gui.EnableScreenClicker(true);
 		scoreboard:SetKeyboardInputEnabled( false )
 

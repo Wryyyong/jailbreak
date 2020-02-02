@@ -132,7 +132,7 @@ local cvarWalkToggle = CreateClientConVar( "jb_cl_option_togglewalk", "0", true,
 local walking = false;
 hook.Add("PlayerBindPress", "JB.PlayerBindPress.KeyBinds", function(pl, bind, pressed)
 	if string.find( bind,"+menu_context" ) then
-		// see cl_context_menu.lua
+		-- see cl_context_menu.lua
 	elseif string.find( bind,"+menu" ) then
 		if pressed then
 			RunConsoleCommand("jb_dropweapon")
