@@ -77,7 +77,7 @@ function PLAYER:SetupDataTables()
 end
 
 local prisonerModels = {
-	
+
 	Model("models/player/Group01/female_01.mdl"),
 	Model("models/player/Group01/female_02.mdl"),
 	Model("models/player/Group01/female_03.mdl"),
