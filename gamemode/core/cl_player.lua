@@ -30,6 +30,22 @@
 -- ##                                                                                ##
 -- ####################################################################################
 
+
+local cl_config = {};
+
+local function makeConfig(name, default, helptext, min, max)
+    CreateClientConVar(name, default, true, false, helptext, min, max)
+
+    return {name = name, default = default}
+end
+
+local function cvarValNum(name)
+    return GetConVarNumber(cl_config[name].name)
+end
+
+cl_config.headbobScale = makeConfig("jb_cl_headbob_scale", "0", "Controls the head bob multiplier when moving.", "0", "10")
+cl_config.fovLerpScale = makeConfig("jb_cl_fov_lerp_scale", "2", "Controls the fov lerp multiplier when moving.", "1", "10")
+
 local cvarAlwaysSpectator = CreateClientConVar( "jb_cl_option_always_spectate", "0", true, false )
 hook.Add("Initialize","JB.AutomateSpectatorSpawn",function()
   if cvarAlwaysSpectator:GetBool() then
@@ -67,9 +83,9 @@ function JB.Gamemode:CalcView( ply, pos, ang, fov, nearZ, farZ )
 
 	if ply:KeyDown(IN_SPEED) then
 		count=count+(FrameTime()*8)*mulSpeed;
-		fovSmooth= Lerp(FrameTime()*5,fovSmooth,(fov + mulSpeed * 10 ));
-		angRightSmooth= -math.abs(math.sin(count)*1);
-		angUpSmooth= math.sin(count)*1.5;
+		fovSmooth= Lerp(FrameTime()*5,fovSmooth,(fov + mulSpeed * cvarValNum("fovLerpScale")));
+		angRightSmooth= cvarValNum("headbobScale") * -math.abs(math.sin(count)*1);
+		angUpSmooth= cvarValNum("headbobScale") * math.sin(count)*1.5;
 	else
 		fovSmooth= Lerp(FrameTime()*20,fovSmooth,fov);
 		angRightSmooth= Lerp(FrameTime()*10,angRightSmooth,0);
