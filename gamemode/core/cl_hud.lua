@@ -208,7 +208,7 @@ local drawAmmoHealth = function()
 		drawRect(128-40,128-2,1 + clamp(79 * (tonumber(ply:GetActiveWeapon():Clip1())/tonumber(ply:GetActiveWeapon().Primary and ply:GetActiveWeapon().Primary.ClipSize or 10)),0,79),4);
 
 		y = 128+16;
-		text_ammo = ply:GetActiveWeapon():Clip1() .. "/" .. ply:GetAmmoCount(ply:GetActiveWeapon():GetPrimaryAmmoType());
+        text_ammo = ply:GetActiveWeapon():Clip1() .. "/" .. ply:GetActiveWeapon().Primary.AmmoAmount
 
 		drawSimpleShadowText("AMMO","JBExtraSmall",128-40,y,JB.Color["#DCDCDC"],0,1);
 		drawSimpleShadowText(text_ammo,"JBNormal",128+40,y,JB.Color["#DCDCDC"],2,1);

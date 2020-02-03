@@ -61,6 +61,7 @@ function PLAYER:Loadout()
 
 	self.Player:Give( table.Random( randomGuardSidearms ) )
 	self.Player:Give( table.Random( randomGuardPrimary ) );
+    -- player ammo is currently unused
 	self.Player:GiveAmmo( 255, "Pistol", true )
 	self.Player:GiveAmmo( 512, "SMG1", true )
 end

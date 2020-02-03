@@ -47,6 +47,7 @@ SWEP.Primary.MaxCone		= 0.06; 											-- maximum spread
 SWEP.Primary.ShootConeAdd	= 0.005;											-- how much should be added to the spread for every shot fired
 SWEP.Primary.IronConeMul 	= 0.25;												-- accuracy multiplier when aiming down sights or zoomed
 SWEP.Primary.CrouchConeMul 	= 0.8;												-- accuracy multiplier when crouched
+SWEP.Primary.AmmoAmount     = 150;                                              -- amount of ammo the weapon carries
 SWEP.Primary.ClipSize		= 27;												-- weapon clip size
 SWEP.Primary.Delay			= 0.13;												-- weapon delay
 SWEP.Primary.IronShootForce = 2;												-- added force when aiming down the sights - for dramatic effect
@@ -172,7 +173,7 @@ end
 SWEP.NextReload = CurTime();
 local timeStartReload;
 function SWEP:Reload()
-	if self.NextReload > CurTime() or self.Owner:GetAmmoCount(self.Primary.Ammo) <= 0 or self:GetNWMode() == MODE_SPRINT or self:GetNWMode() == MODE_AIM or !IsFirstTimePredicted()  then return end
+	if self.NextReload > CurTime() or self.Primary.AmmoAmount <= 0 or self:GetNWMode() == MODE_SPRINT or self:GetNWMode() == MODE_AIM or !IsFirstTimePredicted()  then return end
 
 	self:SetNWMode(MODE_NORMAL);
 	self:SendWeaponAnim(ACT_VM_RELOAD);
@@ -181,18 +182,19 @@ function SWEP:Reload()
 	self.NextReload = CurTime()+4;
 
 
+    -- TODO: Maybe use player ammo as some kind of reserve ammo.
 
 	local clip = self:Clip1();
 	local dur;
 	if clip > 0 then
 		self.Rechamber = false;
-		amt = self.Owner:GetAmmoCount(self.Primary.Ammo)+self:Clip1();
+		amt = self.Primary.AmmoAmount + self:Clip1();
 		self:SetClip1(1);
 
 		dur = self.Owner:GetViewModel():SequenceDuration();
 	else
 		self.Rechamber = true;
-		amt = self.Owner:GetAmmoCount(self.Primary.Ammo);
+		amt = self.Primary.AmmoAmount;
 
 		dur = self.ReloadSequenceTime or self.Owner:GetViewModel():SequenceDuration();
 	end
@@ -202,10 +204,10 @@ function SWEP:Reload()
 		if not self or not IsValid(self) or not self.Owner or not IsValid(self.Owner) then return end
 
 		if amt >= self.Primary.ClipSize then
-			self.Owner:SetAmmo(amt-self.Primary.ClipSize,self.Primary.Ammo);
+			self.Primary.AmmoAmount = amt - self.Primary.ClipSize;
 			newmag = self.Primary.ClipSize;
 		else
-			self.Owner:SetAmmo(0, self.Primary.Ammo);
+            self.Primary.AmmoAmount = 0;
 			newmag = amt;
 		end
 

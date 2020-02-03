@@ -55,6 +55,7 @@ function PLAYER:Spawn()
 
 	self.Player:SetRebel(false);
 
+    -- player ammo is currently unused
 	self.Player:GiveAmmo( 50, "Pistol", true )
 	self.Player:GiveAmmo( 100, "SMG1", true )
 end

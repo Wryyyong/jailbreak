@@ -59,6 +59,7 @@ SWEP.Primary.Recoil			= 2
 SWEP.Primary.Damage			= 90
 SWEP.Primary.NumShots		= 1
 SWEP.Primary.Cone			= 0.00001
+SWEP.Primary.AmmoAmount		= 70
 SWEP.Primary.ClipSize		= 6
 SWEP.Primary.Delay			= 1.1
 SWEP.Primary.DefaultClip	= 30
