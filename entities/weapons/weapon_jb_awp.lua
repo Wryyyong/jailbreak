@@ -51,7 +51,7 @@ SWEP.AutoSwitchTo		= true
 SWEP.AutoSwitchFrom		= false
 
 SWEP.Primary.Sound			= Sound("weapons/awp/awp1.wav")
-SWEP.Primary.Recoil			= 5
+SWEP.Primary.Recoil			= 0
 SWEP.Primary.Damage			= 160
 SWEP.Primary.NumShots		= 1
 SWEP.Primary.Cone			= 0.000001

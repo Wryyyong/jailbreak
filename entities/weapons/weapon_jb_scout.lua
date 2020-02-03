@@ -55,7 +55,7 @@ SWEP.AutoSwitchTo		= true
 SWEP.AutoSwitchFrom		= false
 
 SWEP.Primary.Sound			= Sound("Weapon_Scout.Single")
-SWEP.Primary.Recoil			= 2
+SWEP.Primary.Recoil			= 0
 SWEP.Primary.Damage			= 90
 SWEP.Primary.NumShots		= 1
 SWEP.Primary.Cone			= 0.00001
