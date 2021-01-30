@@ -141,8 +141,17 @@
 			"type"				"CheckBox"
 			"default"			"1"
 		}
-		
+
 		16
+		{
+			"name"				"jb_config_fist_knockback_enabled"
+			"text"				"Enable fist knockback"
+			"help"				"Punch with the force of a superhero"
+			"type"				"CheckBox"
+			"default"			"1"
+		}
+
+		17
 		{
 			"name"				"jb_config_falldamage_is_disabled"
 			"text"				"Disable falldamage"
@@ -151,7 +160,7 @@
 			"default"			"1"
 		}
 		
-		17
+		18
 		{
 			"name"				"jb_config_notify_lastguard"
 			"text"				"'Last guard kills all' notification"

@@ -57,6 +57,7 @@ config.primariesAreConcealed = makeConfig("jb_config_primaries_are_concealed","1
 config.secondariesAreConcealed = makeConfig("jb_config_secondaries_are_concealed","1");
 config.knivesAreConcealed = makeConfig("jb_config_knives_are_concealed","1");
 config.grenadesAreConcealed = makeConfig("jb_config_grenades_are_concealed","1");
+config.fistKnockbackEnabled = makeConfig("jb_config_fist_knockback_enabled", "1");
 config.falldamageIsDisabled = makeConfig("jb_config_falldamage_is_disabled","1");
 config.roundsPerMap = makeConfig("jb_config_rounds_per_map","9999");
 config.notifyLG = makeConfig("jb_config_notify_lastguard",1);
@@ -184,4 +185,4 @@ end
 
 JB.Util = {};
 
-assert(loadFolder("util") and loadFolder("core") and loadFolder("classes","sh") and loadFolder("lastrequests","sh") and loadFolder("vgui","cl"),"Failed to load Jail Break 7! Contact a developer!") 
+assert(loadFolder("util") and loadFolder("core") and loadFolder("classes","sh") and loadFolder("lastrequests","sh") and loadFolder("vgui","cl"),"Failed to load Jail Break 7! Contact a developer!")

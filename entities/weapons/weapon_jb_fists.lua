@@ -192,6 +192,20 @@ function SWEP:DealDamage()
 			dmginfo:SetDamage( math.random( 10, 40 ) )
 		end
 
+		if tobool(JB.Config.fistKnockbackEnabled) then
+			local aimvec = self.Owner:GetAimVector()
+			local velVec = self.Owner:GetVelocity() * 0.5
+			local hMul = 120
+			local vMul = 750
+			local accelVec = Vector(math.Clamp(velVec.x + aimvec.x * hMul, -300, 300), math.Clamp(velVec.y + aimvec.y * hMul, -300, 300), 0)
+			if ( anim == "fists_uppercut" ) then
+				accelVec.z = 270	-- send em to the fucking moon
+			else
+				accelVec.z = math.Clamp(velVec.z + aimvec.z * vMul, -150, 260)
+			end
+			tr.Entity:SetVelocity( accelVec )
+		end
+
 		tr.Entity:TakeDamageInfo( dmginfo )
 		hit = true
 
