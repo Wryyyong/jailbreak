@@ -156,7 +156,24 @@ hook.Add("PlayerBindPress", "JB.PlayerBindPress.KeyBinds", function(pl, bind, pr
 		return true;
 	elseif string.find( bind,"+use" ) and pressed then
 		local tr = LocalPlayer():GetEyeTrace();
-		if tr and IsValid(tr.Entity) and tr.Entity:IsWeapon() then
+		local ent = tr.Entity
+
+		if ( not IsValid(ent) ) then
+			local entities = ents.FindInCone(LocalPlayer():EyePos(), LocalPlayer():GetAimVector(), 200, math.cos(math.rad(10)))
+
+			local min = math.huge
+			local eyetracePos = tr.HitPos
+
+			for id, e in ipairs(entities) do
+				local dist = e:WorldSpaceCenter():DistToSqr(eyetracePos)
+				if dist < min and e:IsWeapon() and not e:IsCarriedByLocalPlayer() then
+					min = dist
+					ent = e
+				end
+			end
+		end
+
+		if IsValid(ent) and ent:IsWeapon() then
 			RunConsoleCommand("jb_pickup");
 			return true;
 		end

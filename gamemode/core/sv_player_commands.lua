@@ -57,15 +57,32 @@ concommand.Add("jb_dropweapon", drop)
 JB.Util.addChatCommand("drop",drop);
 
 local pickup = function(p)
-	local e = p:GetEyeTrace().Entity
+	local ent = p:GetEyeTrace().Entity
+
+	if ( not IsValid(ent) and p:Alive() ) then
+		local entities = ents.FindInCone(p:EyePos(), p:GetAimVector(), 200, math.cos(math.rad(10)))
+
+		local min = math.huge
+		local eyetracePos = p:GetEyeTrace().HitPos
+
+		for id, e in ipairs(entities) do
+			local dist = e:WorldSpaceCenter():DistToSqr(eyetracePos)
+			if dist < min and p:CanPickupWeapon(e) then
+				min = dist
+				ent = e
+			end
+		end
+
+		if not IsValid(ent) then return end
+	end
 
 	if (table.HasValue(JB.LastRequestPlayers,p) and JB.LastRequestTypes[JB.LastRequest] and not JB.LastRequestTypes[JB.LastRequest]:GetCanPickupWeapons() ) then
 		return;
 	end
 
-	if IsValid(e) and p:Alive() and p:CanPickupWeapon( e )  then
-		e.BeingPickedUp = p;
-		JB:DamageLog_AddPlayerPickup( p,e:GetClass() )
+	if IsValid(ent) and p:CanPickupWeapon( ent )  then
+		ent.BeingPickedUp = p;
+		JB:DamageLog_AddPlayerPickup( p,ent:GetClass() )
 	end
 
 end

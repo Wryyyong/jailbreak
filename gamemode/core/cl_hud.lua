@@ -394,6 +394,32 @@ JB.Gamemode.HUDPaint = function(gm)
 	hookCall("HUDPaintOver",JB.Gamemode)
 end;
 
+-- weapon pickup visualization
+-----------------------------------------
+--hook.Add("PostDrawOpaqueRenderables", "conetest", function()
+--	local ent = LocalPlayer():GetEyeTrace().Entity
+--
+--	if not IsValid(ent) then
+--		local entities = ents.FindInCone(LocalPlayer():EyePos(), LocalPlayer():GetAimVector(), 200, math.cos(math.rad(10)))
+--
+--		local min = math.huge
+--		local eyetracePos = LocalPlayer():GetEyeTrace().HitPos
+--
+--		for id, e in ipairs(entities) do
+--			local dist = e:WorldSpaceCenter():DistToSqr(eyetracePos)
+--			if dist < min and e:IsWeapon() and not e:IsCarriedByLocalPlayer() then
+--				min = dist
+--				ent = e
+--			end
+--		end
+--	end
+--	render.DrawLine(LocalPlayer():WorldSpaceCenter(), LocalPlayer():GetEyeTrace().HitPos, Color(0, 255, 0))
+--	if (ent and ent:IsValid() and ent:IsWeapon()) then
+--		render.DrawLine(LocalPlayer():WorldSpaceCenter(), ent:WorldSpaceCenter(), Color(255, 0, 0))
+--	end
+--end)
+-----------------------------------------
+
 -- TARGET ID
 local uniqueid,ent,text_x,text_y,text,text_sub,text_wide,text_tall,text_color;
 JB.Gamemode.HUDDrawTargetID = function()
@@ -401,7 +427,22 @@ JB.Gamemode.HUDDrawTargetID = function()
 
 	ent = LocalPlayer():GetEyeTrace().Entity;
 
-	if (not IsValid(ent) ) then return end;
+	if ( not IsValid(ent) ) then
+		local entities = ents.FindInCone(LocalPlayer():EyePos(), LocalPlayer():GetAimVector(), 200, math.cos(math.rad(10)))
+
+		local min = math.huge
+		local eyetracePos = LocalPlayer():GetEyeTrace().HitPos
+
+		for id, e in ipairs(entities) do
+			local dist = e:WorldSpaceCenter():DistToSqr(eyetracePos)
+			if dist < min and e:IsWeapon() and not e:IsCarriedByLocalPlayer() then
+				min = dist
+				ent = e
+			end
+		end
+
+		if not IsValid(ent) then return end
+	end
 
 	text = "ERROR"
 	text_sub = "Something went terribly wrong!";
