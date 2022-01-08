@@ -96,16 +96,14 @@ JB.Gamemode.PlayerDeath = function(gm, victim, weapon, killer)
 
 	victim:SendNotification("You are muted until the round ends")
 
-	if victim.GetWarden and IsValid(JB.TRANSMITTER) and JB.TRANSMITTER:GetJBWarden() == victim:GetWarden() then
-		JB:BroadcastNotification("The warden has died")
-		timer.Simple(.5,function()
-			for k,v in pairs(team.GetPlayers(TEAM_GUARD))do
-				if v:Alive() and v ~= victim then
-					JB:BroadcastNotification("Prisoners get freeday");
-					break;
-				end
+	-- if victim.GetWarden and IsValid(JB.TRANSMITTER) and JB.TRANSMITTER:GetJBWarden() == victim:GetWarden() then
+	if JB.TRANSMITTER:GetJBWarden() == victim:GetWarden() then
+		for k,v in pairs(team.GetPlayers(TEAM_GUARD)) do
+			if v:Alive() and v ~= victim then
+				JB:BroadcastNotification("The warden has died, it is now a freeday");
+				break
 			end
-		end);
+		end
 	end
 
 	if IsValid(killer) and killer.IsPlayer and killer:IsPlayer()
